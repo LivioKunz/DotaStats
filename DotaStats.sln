@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotaStats", "DotaStats\DotaStats.csproj", "{DCED9E38-065B-4A38-AC03-CA2B39955D82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotaStatsTest", "DotaStatsTest\DotaStatsTest.csproj", "{A1258E15-876E-4E82-AD39-4E6CC0AD204F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCED9E38-065B-4A38-AC03-CA2B39955D82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCED9E38-065B-4A38-AC03-CA2B39955D82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCED9E38-065B-4A38-AC03-CA2B39955D82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCED9E38-065B-4A38-AC03-CA2B39955D82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1258E15-876E-4E82-AD39-4E6CC0AD204F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1258E15-876E-4E82-AD39-4E6CC0AD204F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1258E15-876E-4E82-AD39-4E6CC0AD204F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1258E15-876E-4E82-AD39-4E6CC0AD204F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61DB22DA-1372-4AD7-90D1-40ACE36E3635}
+	EndGlobalSection
+EndGlobal
