@@ -20,6 +20,14 @@ namespace DotaStatsTest
 
         }
 
+        [Fact]
+        public void GetHeroes()
+        {
+            var testee = new OpenDotaApi();
+            var result = testee.GetHeroes();
+
+            result.Should().NotBeEmpty();
+        }
        
     }
 

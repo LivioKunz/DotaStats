@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DotaStats.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     public class SampleDataController : Controller
     {
