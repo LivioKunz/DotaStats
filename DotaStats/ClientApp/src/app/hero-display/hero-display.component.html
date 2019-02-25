@@ -1,0 +1,15 @@
+<h1>Hero counters für {{heroCounter.name}}</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>  
+      <th>Primäres Attribut</th>    
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let hero of heroCounter.heroCounters">
+      <td>{{hero.localized_name}}</td>
+      <td>{{hero.primary_attr}}</td>
+    </tr>
+  </tbody>
+</table>
