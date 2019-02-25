@@ -25,34 +25,48 @@ namespace DotaStats.Controllers
             return heroes;
 
         }
-
+        
         [HttpGet]
-        [Route("api/Hero/{name}")]
-        public async Task<IEnumerable<Hero>> GetHeroes(string name)
+        [Route("api/Counters/{names}")]
+        public async  Task<HeroCounter> GetHeroesCounters(string names)
         {
             var api = new OpenDotaApi();
-
             var heroesJson = api.GetHeroes();
 
             var heroes = JsonConvert.DeserializeObject<List<Hero>>(heroesJson);
-            var searchedHero = heroes.SingleOrDefault(x => x.localized_name == name);
+            var searchedHero = heroes.SingleOrDefault(x => x.localized_name.Equals(names, StringComparison.InvariantCultureIgnoreCase));
 
-            var winRateHeroes =
-                JsonConvert.DeserializeObject<List<WinRates>>(
-                    $"https://api.opendota.com/api/heroes/{searchedHero.id}/matchups");
+            var winRateHeroes = api.GetWinrateForHero(searchedHero.id);
+            var heroesWinrate = JsonConvert.DeserializeObject<List<WinRates>>(winRateHeroes);
 
-            var bestWinrates = winRateHeroes.Where(x => x.games_played > 10).OrderBy(x => x.wins).Take(10);
+            var bestWinrates = heroesWinrate.Where(x => x.games_played > 5).OrderByDescending(x => x.wins).Take(10).Select(x => x.hero_id);
+            var andereWinrates = heroesWinrate.Where(x => x.games_played > 5).OrderBy(x => x.wins).Take(10).Select(x => x.hero_id);
+            
+            var heroCounters = new List<Hero>();
+            var blup = new List<Hero>();
+            foreach (var heroId in bestWinrates)
+            {
+                heroCounters.Add(heroes.SingleOrDefault(x => x.id == heroId));
+                blup.Add(heroes.SingleOrDefault(x => x.id == heroId));
+            }
 
-            var worstWinrates = winRateHeroes.Where(x => x.games_played > 10).OrderByDescending(x => x.wins).Take(10);
-
-            var returnList = new List<Hero>();
-            returnList.Add(searchedHero);
-            //todo listen zusammenführen und helden zurückgeben
-            //var bestWinratesHeroes = 
-
-            return returnList;
-
+            return new HeroCounter
+            {
+                name = searchedHero.localized_name,
+                SearchedHero = searchedHero,
+                HeroCounters = heroCounters
+            };
         }
+    }
+
+    [Serializable]
+    public class HeroCounter
+    {
+        public string name { get; set; }
+
+        public Hero SearchedHero { get; set; }
+
+        public IEnumerable<Hero> HeroCounters { get; set; }
     }
 
     [Serializable]

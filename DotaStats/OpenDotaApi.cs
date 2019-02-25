@@ -7,14 +7,22 @@ namespace DotaStats
     {
         public string GetMatchById(string id)
         {
-            var response = GetMatch(id);
+            var url = $"https://api.opendota.com/api/matches/{id}";
+            var response = this.GetFromUrl(url);
             return response.Result;
         }
 
         public string GetHeroes()
         {
             var url = $"https://api.opendota.com/api/heroes";
-            var client = new HttpClient();
+            
+            var response = GetFromUrl(url);
+            return response.Result;
+        }
+
+        public string GetWinrateForHero(int id)
+        {
+            var url = $"https://api.opendota.com/api/heroes/{id}/matchups";
 
             var response = GetFromUrl(url);
             return response.Result;
@@ -33,23 +41,10 @@ namespace DotaStats
             return null;
         }
 
-        private async Task<string> GetMatch(string id)
-        {
-            var url = $"https://api.opendota.com/api/matches/{id}";
-            var client = new HttpClient();
-            var response = await client.GetAsync(url);
-            if (response.IsSuccessStatusCode)
-            {
-                var test = await response.Content.ReadAsStringAsync();
-                return test;
-            }
-
-            return null;
-        }
+      
     }
 
     public interface IOpenDotaApi
     {
-        string GetMatchById(string id);
     }
 }

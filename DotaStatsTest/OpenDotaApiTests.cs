@@ -28,7 +28,15 @@ namespace DotaStatsTest
 
             result.Should().NotBeEmpty();
         }
-       
+
+        [Fact]
+        public void GetBestCounterForHeroSlark()
+        {
+            var testee = new OpenDotaApi();
+
+            var heroes = testee.GetHeroes();
+
+        }
     }
 
 }
