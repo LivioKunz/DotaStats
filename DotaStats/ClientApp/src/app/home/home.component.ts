@@ -17,22 +17,18 @@ export class HomeComponent implements OnInit {
 
   constructor(private heroSearchService:HeroSearchService) {
     this.heroCounter = new HeroCounter;
-    //heroSearchService.get().subscribe((data: any) => this.heroes = data);
    }
 
   ngOnInit() {
   }
 
+  public onKeydown(event){
+    if(event.key === "Enter"){
+      this.searchHero();
+    }
+  }
+
   public searchHero(){
-    //var result = this.heroSearchService.getCounters(this.heroName);
-    //this.heroCounter.name = result.
-    // var testi = this.heroSearchService.get();
     this.heroSearchService.getCounters(this.heroName).subscribe((data: HeroCounter) => this.heroCounter = data);
-    // this.heroSearched.emit(this.heroName);
-    // this.heroName = "";
-    var testi = this.heroCounter;
-    var blup = testi.SearchedHero;
-    var blup2 = testi.HeroCounters;
-    var blep = testi.name;
   }
 }
