@@ -28,10 +28,15 @@ export class HeroSearchService {
     return test;
   }
 
-  public getCounters(name): Observable<HeroCounter>{
-    var url = 'https://localhost:44329/api/Counters/' + name;
+  public getCounters(names): Observable<HeroCounter>{
+    var url = 'https://localhost:44329/api/Counters/' + names;
     return this.http.get<HeroCounter>(url, {headers: this.headers});    
   }
+
+  // public getCounters(name): Observable<HeroCounter>{
+  //   var url = 'https://localhost:44329/api/Counters/' + name;
+  //   return this.http.get<HeroCounter>(url, {headers: this.headers});    
+  // }
 
   public searchHero(record){
     this.getHero(record);

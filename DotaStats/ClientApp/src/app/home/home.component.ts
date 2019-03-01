@@ -9,8 +9,8 @@ import {HeroCounter} from '../HeroCounter'
 })
 export class HomeComponent implements OnInit {
 
-
   heroName: string;
+  heroNames: Array<string> = [];
   public heroes: Array<any>;
   public currentHero: any;
   public heroCounter: HeroCounter;
@@ -24,8 +24,12 @@ export class HomeComponent implements OnInit {
 
   public onKeydown(event){
     if(event.key === "Enter"){
-      this.searchHero();
+      this.searchHeroes();
     }
+  }
+  searchHeroes(){
+    this.heroNames.push(this.heroName);
+    this.heroSearchService.getCounters(this.heroNames).subscribe((data: HeroCounter) => this.heroCounter = data);  
   }
 
   public searchHero(){

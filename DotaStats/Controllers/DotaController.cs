@@ -28,26 +28,25 @@ namespace DotaStats.Controllers
         
         [HttpGet]
         [Route("api/Counters/{names}")]
-        public async  Task<HeroCounter> GetHeroesCounters(string names)
+        public async  Task<HeroCounter> GetHeroesCounters(List<string> names)
         {
+            var name = names.First();
             var api = new OpenDotaApi();
             var heroesJson = api.GetHeroes();
 
             var heroes = JsonConvert.DeserializeObject<List<Hero>>(heroesJson);
-            var searchedHero = heroes.SingleOrDefault(x => x.localized_name.Equals(names, StringComparison.InvariantCultureIgnoreCase));
+            var searchedHero = heroes.SingleOrDefault(x => x.localized_name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
 
             var winRateHeroes = api.GetWinrateForHero(searchedHero.id);
             var heroesWinrate = JsonConvert.DeserializeObject<List<WinRates>>(winRateHeroes);
 
-            var bestWinrates = heroesWinrate.Where(x => x.games_played > 5).OrderByDescending(x => x.wins).Take(10).Select(x => x.hero_id);
-            var andereWinrates = heroesWinrate.Where(x => x.games_played > 5).OrderBy(x => x.wins).Take(10).Select(x => x.hero_id);
+            var bestWinrates = heroesWinrate.Where(x => x.games_played > 5).OrderByDescending(x => x.wins).Take(9).Select(x => x.hero_id);
             
             var heroCounters = new List<Hero>();
-            var blup = new List<Hero>();
+            
             foreach (var heroId in bestWinrates)
             {
                 heroCounters.Add(heroes.SingleOrDefault(x => x.id == heroId));
-                blup.Add(heroes.SingleOrDefault(x => x.id == heroId));
             }
 
             return new HeroCounter

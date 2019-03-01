@@ -40,8 +40,6 @@ namespace DotaStats
 
             return null;
         }
-
-      
     }
 
     public interface IOpenDotaApi

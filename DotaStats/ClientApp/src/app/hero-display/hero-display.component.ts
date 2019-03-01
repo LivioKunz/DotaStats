@@ -9,13 +9,9 @@ import {HeroCounter} from '../HeroCounter'
 })
 export class HeroDisplayComponent implements OnInit {
 
-
-
   @Output() heroSearched = new EventEmitter<any>();
   @Input() heroes: Array<any>;
   @Input() heroCounter: HeroCounter;
-
-  
 
   constructor(private heroSearchService: HeroSearchService) { 
   }
