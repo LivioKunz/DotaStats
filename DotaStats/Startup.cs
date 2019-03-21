@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Serialization;
 
 namespace DotaStats
 {
@@ -28,8 +30,13 @@ namespace DotaStats
                         .AllowAnyHeader()
                         .AllowCredentials());
             });
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            
+            services.AddMvc()
+                .AddJsonOptions(options =>
+                    {
+                        options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                    })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -61,7 +68,7 @@ namespace DotaStats
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
+                    template: "{controller}/{action=Index}/{Id?}");
             });
 
             app.UseSpa(spa =>

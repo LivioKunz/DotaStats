@@ -13,10 +13,10 @@ namespace DotaStatsTest
             var testee = new DotaController();
             var result = testee.GetHeroesCounters("Slark");
 
-            result.Result.SearchedHero.id.Should().Be(93);
+            result.Result.SearchedHero.Id.Should().Be(93);
             result.Result.HeroCounters.Count().Should().Be(10);
-            result.Result.HeroCounters.First().id.Should().Be(11);
-            result.Result.HeroCounters.Last().id.Should().Be(33);
+            result.Result.HeroCounters.First().Id.Should().Be(11);
+            result.Result.HeroCounters.Last().Id.Should().Be(33);
 
         }
     }

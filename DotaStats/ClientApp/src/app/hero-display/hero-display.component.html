@@ -1,4 +1,4 @@
-<h3>Hero counters für {{heroCounter.name}}</h3>
+<h3>Hero counters für {{heroCounter.Name}}</h3>
 <!-- <table class="table table-striped">
   <thead>
     <tr>
@@ -14,7 +14,7 @@
   </tbody>
 </table> -->
 <div class="row">
-<div *ngFor="let hero of heroCounter.heroCounters" class="cold-md-4" >
-  <img src="http://cdn.dota2.com/apps/dota2/images/heroes/{{hero.localized_name | lowercase}}_full.png" class="img-rounded"/>
+<div *ngFor="let hero of heroCounter.HeroCounters" class="cold-md-4" >
+  <img src="http://cdn.dota2.com/apps/dota2/images/heroes/{{hero.ImageName | lowercase}}_full.png" class="img-rounded"/>
 </div>
 </div>
